@@ -2,8 +2,10 @@ package com.example.tmpsql;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.EditText;
 
 public class AddStudentScreen extends AppCompatActivity {
+    EditText classNameNS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
