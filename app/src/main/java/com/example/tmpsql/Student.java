@@ -1,8 +1,11 @@
 package com.example.tmpsql;
 
+import android.graphics.Bitmap;
+
 public class Student {
     private String firstName,lastName,numClass;
     private int avgGrade;
+    Bitmap bitmap;
 
     public Student(String firstName,
                    String lastName,
@@ -44,5 +47,9 @@ public class Student {
 
     public void setAvgGrade(int avgGrade) {
         this.avgGrade = avgGrade;
+    }
+
+    public android.graphics.Bitmap getBitmap() {
+        return bitmap;
     }
 }

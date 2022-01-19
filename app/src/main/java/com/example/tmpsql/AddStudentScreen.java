@@ -1,5 +1,6 @@
 package com.example.tmpsql;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,9 +31,10 @@ public class AddStudentScreen extends AppCompatActivity {
                 String l_name = lastNameNS.getText().toString();
                 String class_name = classNameNS.getText().toString();
                 double avg = Double.valueOf(avgGradeNS.getText().toString());
-
                 Utils.insert_student(f_name,l_name,class_name,
                         avg, db);
+                Intent intent = new Intent(AddStudentScreen.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
