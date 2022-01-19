@@ -1,5 +1,6 @@
 package com.example.tmpsql;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -8,30 +9,28 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
-public class studentAdapter extends AppCompatActivity {
+public class studentAdapter extends ArrayAdapter<Student> {
     Context context;
-    List<Student> objects;
+    List<Student> students;
 
-    public studentAdapter(Context context, int resource, int textViewResourceld, List<Student> objects) {
-        //super(context, resource,textViewResourceld,objects);
+    public studentAdapter(@NonNull Context context, int resource, @NonNull List<Student> students) {
+        super(context, resource, students);
         this.context = context;
-        this.objects = objects;
-
+        this.students = students;
     }
 
+/*
     public int getCount() {
-        return objects.size();
+        return students.size();
     }
 
 
-    public Object getItem(int position) {
-        return objects.get(position);
-    }
 
 
     public long getItemId(int position) {
@@ -43,12 +42,11 @@ public class studentAdapter extends AppCompatActivity {
         View view= layoutInflater.inflate(R.layout.activity_student_adapter,parent,false);
         TextView Tname= (TextView)view.findViewById(R.id.Tname);
         TextView Tclaas= (TextView)view.findViewById(R.id.Tclaas);
-        ImageView Tavatar = (ImageView) view.findViewById(R.id.Tavatar);
-        Student temp = objects.get(position);
+        //ImageView Tavatar = (ImageView) view.findViewById(R.id.Tavatar);
+        Student temp = students.get(position);
 
-        Tavatar.setImageBitmap(temp.getBitmap());
         Tname.setText(temp.getFirstName());
         Tclaas.setText(temp.getNumClass());
         return view;
-    }
+    }*/
 }

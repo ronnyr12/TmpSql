@@ -30,6 +30,7 @@ public class Utils {
     final static String TABLE_TEACHER_COL_SUBJECT = "subject";
 
     public static void createTables(SQLiteDatabase db) {
+
         db.execSQL("create table if not exists " + Utils.TABLE_STUDENT +
                 " (" + TABLE_STUDENT_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
                 "" + Utils.TABLE_STUDENT_COL_FIRSTNAME + " TEXT," +
@@ -71,19 +72,19 @@ public class Utils {
                 sameNameStudentList.add(new Student(cursor.getString(0),
                         cursor.getString(1),
                         cursor.getString(2),
-                        cursor.getInt(3)));
+                        cursor.getDouble(3)));
             }
         }
         return sameNameStudentList;
     }
 
-    public static ArrayList<Student> better_average(int avgGrade, SQLiteDatabase db) {
+    public static ArrayList<Student> better_average(double avgGrade, SQLiteDatabase db) {
         ArrayList<Student> betterAverage = new ArrayList<>();
         Cursor cursor = db.rawQuery("select * from " + TABLE_STUDENT, null);
         while (cursor.moveToNext()) {
-            if (avgGrade < (cursor.getInt(3))) {
+            if (avgGrade < (cursor.getDouble(3))) {
                 betterAverage.add(new Student(cursor.getString(0), cursor.getString(1),
-                        cursor.getString(2), cursor.getInt(3)));
+                        cursor.getString(2), cursor.getDouble(3)));
             }
         }
         return betterAverage;

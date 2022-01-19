@@ -7,6 +7,16 @@
     tools:context=".MainActivity"
     android:background="@color/black">
 
+    <EditText
+        android:textColorHint="@color/white"
+        android:id="@+id/avggradeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="224dp"
+        android:layout_marginBottom="344dp"
+        android:hint="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/classNameEditText"
@@ -54,20 +64,14 @@
         android:id="@+id/LVallSinC"
         android:layout_width="409dp"
         android:layout_height="191dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/avggradeEditText"
+        android:layout_marginTop="328dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.338"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="NotSibling">
 
-        <EditText
-            android:id="@+id/avggradeEditText"
-            android:layout_width="274dp"
-            android:layout_height="55dp"
-            android:hint="enter the avg grade: 0  "
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="22dp" />
+
     </ListView>
 
     <TextView
@@ -89,7 +93,7 @@
         android:layout_height="195dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMA1"
         app:layout_constraintVertical_bias="1.0" />

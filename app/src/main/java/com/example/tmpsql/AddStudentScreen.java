@@ -15,7 +15,7 @@ public class AddStudentScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_student_screen2);
+        setContentView(R.layout.activity_add_student_screen);
 
         db = openOrCreateDatabase(Utils.DATABASE_NAME,MODE_PRIVATE,null);
         classNameNS = findViewById(R.id.classNameNS);
