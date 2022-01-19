@@ -4,7 +4,10 @@ public class Student {
     private String firstName,lastName,numClass;
     private int avgGrade;
 
-    public Student(String firstName, String lastName, String numClass, int avgGrade) {
+    public Student(String firstName,
+                   String lastName,
+                   String numClass,
+                   int avgGrade) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.numClass = numClass;

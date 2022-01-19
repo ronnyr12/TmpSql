@@ -34,7 +34,8 @@ public class Utils {
                 " (" + TABLE_STUDENT_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
                 "" + Utils.TABLE_STUDENT_COL_FIRSTNAME + " TEXT," +
                 "" + Utils.TABLE_STUDENT_COL_LASTNAME + " TEXT," +
-                "" + Utils.TABLE_STUDENT_COL_NUMCLASS + " TEXT," + Utils.TABLE_STUDENT_COL_AVGGRADE + " INTEGER)");
+                "" + Utils.TABLE_STUDENT_COL_NUMCLASS + " TEXT," +
+                Utils.TABLE_STUDENT_COL_AVGGRADE + " real)");
 
         db.execSQL("create table if not exists "
                 + TABLE_CLASS +
@@ -51,17 +52,26 @@ public class Utils {
 
     }
 
-    public static void insert_student(String firstName, String lastName, String numClass, int avgGrade, SQLiteDatabase db) {
-        db.execSQL("insert into TABLE_STUDENT values(null, '" + firstName + "'," + lastName + ",'" + numClass + ",'" + avgGrade + ")");
+    public static void insert_student(String firstName,
+                                      String lastName,
+                                      String numClass,
+                                      double avgGrade,
+                                      SQLiteDatabase db) {
+        db.execSQL("insert into "+TABLE_STUDENT+" values("+null+", " +
+                "'" + firstName + "','" + lastName + "','" + numClass + "','" + avgGrade + "')");
     }
 
-    public static ArrayList<Student> find_student_by_name(String firstName, SQLiteDatabase db) {
+    public static ArrayList<Student> find_student_by_name(String firstName,
+                                                          SQLiteDatabase db) {
         ArrayList<Student> sameNameStudentList = new ArrayList<>();
         Cursor cursor = db.rawQuery("select * from " + TABLE_STUDENT, null);
+
         while (cursor.moveToNext()) {
             if (firstName.equals(cursor.getString(1))) {
-                sameNameStudentList.add(new Student(cursor.getString(0), cursor.getString(1),
-                        cursor.getString(2), cursor.getInt(3)));
+                sameNameStudentList.add(new Student(cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getInt(3)));
             }
         }
         return sameNameStudentList;
