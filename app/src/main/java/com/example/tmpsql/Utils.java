@@ -52,11 +52,8 @@ public class Utils {
 
     }
 
-    public static void insert_student(String firstName,
-                                      String lastName,
-                                      String numClass,
-                                      double avgGrade,
-                                      SQLiteDatabase db) {
+    public static void insert_student(String firstName, String lastName, String numClass,
+                                      double avgGrade, SQLiteDatabase db) {
         db.execSQL("insert into "+TABLE_STUDENT+" values("+null+", " +
                 "'" + firstName + "','" + lastName + "','" + numClass + "','" + avgGrade + "')");
     }
@@ -71,42 +68,44 @@ public class Utils {
                 sameNameStudentList.add(new Student(cursor.getString(0),
                         cursor.getString(1),
                         cursor.getString(2),
-                        cursor.getInt(3)));
+                        cursor.getDouble(3)));
             }
         }
         return sameNameStudentList;
     }
 
-    public static ArrayList<Student> better_average(int avgGrade, SQLiteDatabase db) {
+    public static ArrayList<Student> better_average(double avgGrade, SQLiteDatabase db) {
         ArrayList<Student> betterAverage = new ArrayList<>();
         Cursor cursor = db.rawQuery("select * from " + TABLE_STUDENT, null);
         while (cursor.moveToNext()) {
-            if (avgGrade < (cursor.getInt(3))) {
+            if (avgGrade < (cursor.getDouble(4))) {
                 betterAverage.add(new Student(cursor.getString(0), cursor.getString(1),
-                        cursor.getString(2), cursor.getInt(3)));
+                        cursor.getString(2), cursor.getDouble(3)));
             }
         }
         return betterAverage;
     }
 
     public static void deleteStudent(int id, SQLiteDatabase db) {
-        db.execSQL("delete from " + TABLE_STUDENT + " where " + TABLE_STUDENT_COL_ID + "=" + id);
+        db.execSQL("delete from " + TABLE_STUDENT + " where " + TABLE_STUDENT_COL_ID +
+                "=" + id);
     }
 
     public static void updateStudent(Student student, SQLiteDatabase db) {
         ContentValues contentValues = new ContentValues();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_STUDENT + " where " + TABLE_STUDENT_COL_FIRSTNAME + "=" + student.getFirstName() + " AND "
-                + TABLE_STUDENT_COL_LASTNAME + "=" + student.getLastName() + " AND " + TABLE_STUDENT_COL_NUMCLASS + "=" + student.getNumClass() +
-                " AND " + TABLE_STUDENT_COL_AVGGRADE + "=" + student.getAvgGrade(), null);
-        if (cursor.getCount() > 0) {
-            while (cursor.moveToNext()) {
+        Cursor cursor = db.rawQuery("select * from " + TABLE_STUDENT + " where " +
+                TABLE_STUDENT_COL_FIRSTNAME + "=" + student.getFirstName() + " AND "
+                + TABLE_STUDENT_COL_LASTNAME + "=" + student.getLastName() + " AND " +
+                TABLE_STUDENT_COL_NUMCLASS + "=" + student.getNumClass() +
+                " AND " + TABLE_STUDENT_COL_AVGGRADE + "=" +
+                student.getAvgGrade(), null);
+        while (cursor.moveToNext()) {
                 contentValues.put(TABLE_STUDENT_COL_ID, cursor.getInt(0));
                 contentValues.put(TABLE_STUDENT_COL_FIRSTNAME, student.getFirstName());
                 contentValues.put(TABLE_STUDENT_COL_LASTNAME, student.getLastName());
                 contentValues.put(TABLE_STUDENT_COL_NUMCLASS, student.getNumClass());
                 contentValues.put(TABLE_STUDENT_COL_AVGGRADE, student.getAvgGrade());
                 db.update(TABLE_STUDENT, contentValues, TABLE_STUDENT_COL_ID + "=" + cursor.getInt(0), null);
-            }
         }
     }
 

@@ -2,12 +2,10 @@ package com.example.tmpsql;
 
 public class Student {
     private String firstName,lastName,numClass;
-    private int avgGrade;
+    private double avgGrade;
 
-    public Student(String firstName,
-                   String lastName,
-                   String numClass,
-                   int avgGrade) {
+    public Student(String firstName, String lastName,
+                   String numClass, double avgGrade) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.numClass = numClass;
@@ -38,11 +36,11 @@ public class Student {
         this.numClass = numClass;
     }
 
-    public int getAvgGrade() {
+    public double getAvgGrade() {
         return avgGrade;
     }
 
-    public void setAvgGrade(int avgGrade) {
+    public void setAvgGrade(double avgGrade) {
         this.avgGrade = avgGrade;
     }
 }
