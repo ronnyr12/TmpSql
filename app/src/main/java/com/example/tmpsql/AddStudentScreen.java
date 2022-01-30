@@ -1,5 +1,6 @@
 package com.example.tmpsql;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,16 +32,12 @@ public class AddStudentScreen extends AppCompatActivity {
                 String class_name = classNameNS.getText().toString();
                 double avg = Double.valueOf(avgGradeNS.getText().toString());
 
-                Utils.insert_student("mr","porteno","yb6",
-                        98, db);
-                Utils.insert_student("jo","rog","yb6",
-                        70, db);
-                Utils.insert_student("ben","parker","yb6",
-                        65, db);
-                 Utils.insert_student("albert","einstein","yb2",
-                        80, db);
-                 Utils.insert_student("yang","li","yb2",
-                        50, db);
+                Utils.insert_student(f_name,l_name,class_name,avg,db);
+
+                Intent intent = new Intent(AddStudentScreen.this, MainActivity.class);
+                startActivity(intent);
+
+
 
 
             }
